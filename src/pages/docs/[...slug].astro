@@ -5,6 +5,8 @@ import Layout from '../../layouts/Layout.astro'
 export async function getStaticPaths() {
   const posts = await getCollection('docs')
   return posts.map(post => {
+    console.log(post)
+    console.log(post.slug)
     return {
       params: { slug: post.slug.replace(/\/index$/, '') },
       props: { post },
@@ -27,6 +29,9 @@ const { Content } = await post.render()
     <div>
       <div>
         <div>最終更新日: {post.data.updated.toISOString()}</div>
+      </div>
+      <div>
+        <a href={`https://github.com/LINEOpen/line-docs/tree/main/src/content/docs/`}>GitHubで編集</a>
       </div>
     </div>
   </div>
