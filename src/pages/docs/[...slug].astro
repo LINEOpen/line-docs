@@ -26,7 +26,7 @@ const { Content } = await post.render()
     </div>
     <div>
       <div>
-        <div>最終更新日: {post.data.updated}</div>
+        <div>最終更新日: {post.data.updated.toISOString()}</div>
       </div>
     </div>
   </div>
