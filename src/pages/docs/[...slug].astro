@@ -5,10 +5,9 @@ import Layout from '../../layouts/Layout.astro'
 export async function getStaticPaths() {
   const posts = await getCollection('docs')
   return posts.map(post => {
-    console.log(post)
     console.log(post.slug)
     return {
-      params: { slug: post.slug.replace(/(\/?)index$/, '') },
+      params: { slug: (post.slug.replace(/(\/?)index$/, '') || '') },
       props: { post },
     }
   })
