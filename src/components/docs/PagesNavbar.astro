@@ -17,12 +17,17 @@ const treeSlug = slug.split('/')
       {treeSlug.join('.')}
       <div>
         {
-          await Promise.all(treeSlug.map(async (_, index) => {
-
-            const path = treeSlug.slice(0, index + 1).join('/')
+          ['index', ...(await Promise.all(treeSlug.map(async (_, index) => {
+            const slug = treeSlug.slice(0, index + 1).join('/')
+            return slug
+          })))].map(slug => {
             const entry = await getEntry('docs', path)
-            return entry.data.title
-          }))
+            return <div>
+              <a href={`${import.meta.env.BASE_URL}docs/${slug}`}>
+                { entry.data.titoe }
+              </a>
+            </div>
+          })
         }
       </div>
     </div>
