@@ -22,7 +22,7 @@ const upperSlugs = [
       <div class="ml-2">
         {
           (await getCollection('docs'))
-            .filter(post => post.includes(upperSlugs.at(-1)))
+            .filter(post => post.slug.includes(upperSlugs.at(-1)))
             .map(post => {
               return <div>{post.data.title}</div>
             })
