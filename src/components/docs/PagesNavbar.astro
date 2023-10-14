@@ -1,17 +1,25 @@
 ---
-import { getCollection,CollectionEntry } from 'astro:content'
-
-const posts = await getCollection('docs')
+import { getEntry } from 'astro:content'
 
 export interface Props {
   class?: string
+  slug: string
 }
 
+const { slug } = Astro.props
 ---
 <div class={Astro.props.class}>
   <div class="p-4">
-    {
-      posts.map(post => post.slug)
-    }
+    <div>
+      <div>上位ページ</div>
+      <div>
+        {
+          await Promise.all(slug.split('/').map(async upPath => {
+            const entry = await getEntry('docs', upPath)
+            return entry.data.title
+          }))
+        }
+      </div>
+    </div>
   </div>
 </div>

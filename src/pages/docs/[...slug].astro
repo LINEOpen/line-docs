@@ -24,7 +24,7 @@ const { Content } = await post.render()
   <div class="flex">
     <!-- サイドバー -->
     <div class="hidden md:block">
-      <PagesNavbar />
+      <PagesNavbar slug={post.slug} />
     </div>
     <!-- ページ -->
     <div class="mx-5">
