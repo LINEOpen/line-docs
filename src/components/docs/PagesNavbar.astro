@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry, getCollection } from 'astro:content'
 
 export interface Props {
   class?: string
@@ -20,7 +20,13 @@ const upperSlugs = [
     <div>
       <div class="text-lg font-bold">同階層のページ</div>
       <div class="ml-2">
-
+        {
+          (await getCollection('docs'))
+            .filter(post => post.includes(upperSlugs.at(-1)))
+            .map(post => {
+              return <div>{post.data.title}</div>
+            })
+        }
       </div>
     </div>
     <div>
