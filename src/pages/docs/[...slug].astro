@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/PageLayout.astro'
+import PagesNavbar from '../../components/docs/PagesNavbar.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('docs')
@@ -20,16 +21,23 @@ const { post } = Astro.props
 const { Content } = await post.render()
 ---
 <Layout title={post.data.title}>
-  <div class="mx-5">
-    <div class="markdown">
-      <Content />
+  <div class="flex">
+    <!-- サイドバー -->
+    <div class="hidden md:block">
+      <PagesNavbar />
     </div>
-    <div>
-      <div>
-        <div>最終更新日: {post.data.updated.toISOString()}</div>
+    <!-- ページ -->
+    <div class="mx-5">
+      <div class="markdown">
+        <Content />
       </div>
       <div>
-        <a href={`https://github.com/LINEOpen/line-docs/edit/main/src/content/docs/${post.id}`}>GitHubで編集</a>
+        <div>
+          <div>最終更新日: {post.data.updated.toISOString()}</div>
+        </div>
+        <div>
+          <a href={`https://github.com/LINEOpen/line-docs/edit/main/src/content/docs/${post.id}`}>GitHubで編集</a>
+        </div>
       </div>
     </div>
   </div>
