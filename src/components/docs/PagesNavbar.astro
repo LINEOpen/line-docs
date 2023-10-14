@@ -23,7 +23,7 @@ const treeSlug = slug.split('/')
             
             return <div>
               <div>
-                Path: {treeSlug.slice(0, index).join('/')}
+                Path: {treeSlug.slice(0, index + 1).join('/')}
               </div>
               <div>
                 Index: {index}
