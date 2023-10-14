@@ -14,13 +14,21 @@ const treeSlug = slug.split('/')
   <div class="p-4">
     <div>
       <div>上位ページ</div>
+      {treeSlug.join('.')}
       <div>
         {
           await Promise.all(treeSlug.map(async (_, index) => {
 
             //const entry = await getEntry('docs', upPath)
             
-            return treeSlug.slice(0, index).join('/')
+            return <div>
+              <div>
+                Path: {treeSlug.slice(0, index).join('/')}
+              </div>
+              <div>
+                Index: {index}
+              </div>
+            </div>
           }))
         }
       </div>
