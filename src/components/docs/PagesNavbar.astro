@@ -1,10 +1,17 @@
 ---
+import { getCollection,CollectionEntry } from 'astro:content'
+
+const posts = await getCollection('docs')
+
 export interface Props {
   class?: string
 }
+
 ---
 <div class={Astro.props.class}>
-  <div class="">
-    Navbar
+  <div class="p-4">
+    {
+      docs.map(page => page.slug)
+    }
   </div>
 </div>
