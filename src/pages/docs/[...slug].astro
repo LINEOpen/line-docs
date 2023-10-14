@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
-
+import Header from "../../components/Header.astro"
 export async function getStaticPaths() {
   const posts = await getCollection('docs')
   return posts.map(post => {
@@ -20,6 +20,7 @@ const { post } = Astro.props
 const { Content } = await post.render()
 ---
 <Layout title={post.data.title}>
+  <Header />
   <div class="mx-5">
     <div class="markdown">
       <Content />
