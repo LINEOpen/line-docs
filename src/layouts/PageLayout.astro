@@ -1,0 +1,8 @@
+---
+import Layout, { type Props as BaseProps } from "./BaseLayout.astro"
+import Header from "../components/Header.astro"
+export type Props = BaseProps
+---
+<Layout {...Astro.props}>
+  <slot />
+</Layout>
