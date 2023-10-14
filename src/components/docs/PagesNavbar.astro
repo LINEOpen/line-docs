@@ -14,6 +14,7 @@ const upperSlugs = [
   'index',
   ...treeSlug.map((_, index) => treeSlug.slice(0, index + 1).join('/')).slice(0, -1)
 ]
+const oneUpSlug = upperSlugs.at(-1)
 ---
 <div class={Astro.props.class}>
   <div class="p-4">
@@ -22,7 +23,12 @@ const upperSlugs = [
       <div class="ml-2">
         {
           (await getCollection('docs'))
-            .filter(post => post.slug.includes(upperSlugs.at(-1)))
+            .filter(post => {
+              const isSameLevelRegExpString = `^${oneUpSlug.replaceAll('/', '\\/')}`
+              console.log(isSameLevelRegExpString)
+              const isSameLevelRegExp = new RegExp(isSameLevelRegExpString)
+              return isSameLevelRegExp.test(post.slug)
+            })
             .map(post => {
               return <div>{post.data.title}</div>
             })
