@@ -19,16 +19,9 @@ const treeSlug = slug.split('/')
         {
           await Promise.all(treeSlug.map(async (_, index) => {
 
-            //const entry = await getEntry('docs', upPath)
-            
-            return <div>
-              <div>
-                Path: {treeSlug.slice(0, index + 1).join('/')}
-              </div>
-              <div>
-                Index: {index}
-              </div>
-            </div>
+            const path = treeSlug.slice(0, index + 1).join('/')
+            const entry = await getEntry('docs', path)
+            return entry.data.title
           }))
         }
       </div>
