@@ -27,6 +27,7 @@ const treeSlug = slug.split('/')
               .map((_, index) => treeSlug.slice(0, index + 1).join('/'))
           ].map(async slug => {
             const entry = await getEntry('docs', slug)
+            console.log(slug, entry)
             return <div class="my-1">
               <a href={`${import.meta.env.BASE_URL}docs/${slug}`}>
                 { entry.data.titoe }
