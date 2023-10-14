@@ -20,7 +20,6 @@ const { post } = Astro.props
 const { Content } = await post.render()
 ---
 <Layout title={post.data.title}>
-  <Header />
   <div class="mx-5">
     <div class="markdown">
       <Content />
