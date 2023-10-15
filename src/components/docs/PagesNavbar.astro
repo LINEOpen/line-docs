@@ -20,15 +20,19 @@ const isSameLevelRegExpString = `^${(oneUpSlug === 'index' ? '' : oneUpSlug).rep
 
 const isSameLevelRegExp = new RegExp(isSameLevelRegExpString)
 
-console.log(isSameLevelRegExp, slug)
+const posts = await getCollection('docs')
 ---
 <div class={Astro.props.class}>
   <div class="p-4">
     <div>
-      <div class="text-lg font-bold">同階層のページ</div>
+      <div class="text-lg font-bold">
+        {
+          (await getEntry('docs', oneUpSlug)).data.title
+        }
+      </div>
       <div class="ml-2">
         {
-          (await getCollection('docs'))
+          posts
             .filter(post => {
               return isSameLevelRegExp.test(post.slug)
             })
