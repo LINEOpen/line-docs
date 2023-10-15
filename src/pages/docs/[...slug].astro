@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/PageLayout.astro'
 import PagesNavbar from '../../components/docs/PagesNavbar.astro'
+import { IconEdit } from '@tabler/icons-solidjs'
 
 export async function getStaticPaths() {
   const posts = await getCollection('docs')
@@ -45,6 +46,7 @@ const { Content } = await post.render()
             href={`https://github.com/LINEOpen/line-docs/edit/main/src/content/docs/${post.id}`}
             >
             GitHubで編集
+            <IconEdit />
           </a>
         </div>
       </div>
