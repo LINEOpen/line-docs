@@ -23,7 +23,7 @@ const { Content } = await post.render()
 <Layout title={post.data.title}>
   <div class="flex">
     <!-- サイドバー -->
-    <div class="hidden md:block fixed top-0">
+    <div class="hidden md:block sticky top-0">
       <PagesNavbar slug={post.slug} />
     </div>
     <!-- ページ -->
