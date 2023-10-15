@@ -59,7 +59,7 @@ const posts = await getCollection('docs')
                   </div>
                   <div class="ml-2">
                     {
-                      posts
+                      (slug === 'index' ? [] : posts)
                         .filter(post => isChildRegExp.test(post.slug))
                         .map(child => <div>
                           <a href={`${import.meta.env.BASE_URL}docs/${child.slug}`}>
