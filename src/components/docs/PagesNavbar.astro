@@ -36,7 +36,7 @@ const posts = await getCollection('docs')
     </div>
     <div>
       <div class="text-lg font-bold">
-        <a href={`${import.meta.BASE_URL}docs/${oneUpEntry.slug}`}>
+        <a href={`${import.meta.env.BASE_URL}docs/${oneUpEntry.slug}`}>
           {
             oneUpEntry.data.title
           }
@@ -62,7 +62,7 @@ const posts = await getCollection('docs')
                       posts
                         .filter(post => isChildRegExp.test(post.slug))
                         .map(child => <div>
-                          <a href={`${import.meta.BASE_URL}docs/${child.slug}`}>
+                          <a href={`${import.meta.env.BASE_URL}docs/${child.slug}`}>
                             { child.data.title }
                           </a>
                         </div>)
