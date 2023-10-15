@@ -20,7 +20,7 @@ export interface Props {
 const { post } = Astro.props
 const { Content } = await post.render()
 ---
-<Layout title={post.data.title}>
+<Layout title={`${post.data.title} | LINE Internal Docs`}>
   <div class="flex">
     <!-- サイドバー -->
     <div class="hidden md:block fixed overflow-x-scroll w-48">
