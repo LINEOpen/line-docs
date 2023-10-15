@@ -1,6 +1,6 @@
 ---
 title: LINEの内部スキーム
-updated: 2023-10-14
+updated: 2023-10-15
 ---
 # LINEの内部スキーム
 
