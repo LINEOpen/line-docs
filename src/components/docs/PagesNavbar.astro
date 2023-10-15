@@ -7,6 +7,7 @@ export interface Props {
 }
 
 const { slug } = Astro.props
+const thisPageEntry = await getEntry('docs', slug)
 
 const treeSlug = slug.split('/')
 
@@ -15,20 +16,31 @@ const upperSlugs = [
   ...treeSlug.map((_, index) => treeSlug.slice(0, index + 1).join('/')).slice(0, -1)
 ]
 const oneUpSlug = upperSlugs.at(-1)
+const oneUpEntry = await getEntry('docs', oneUpSlug)
 
 const isSameLevelRegExpString = `^${(oneUpSlug === 'index' ? '' : oneUpSlug + '/').replaceAll('/', '\\/')}(?=[^\/]+$)`
-
 const isSameLevelRegExp = new RegExp(isSameLevelRegExpString)
-console.log(isSameLevelRegExp)
+
+const isChildRegExpString = `^${(slug === 'index' ? '' : slug + '/').replaceAll('/', '\\/')}(?=[^\/]+$)`
+const isChildRegExp = new RegExp(isSameLevelRegExpString)
+console.log(isChildRegExp)
+
 const posts = await getCollection('docs')
 ---
 <div class={Astro.props.class}>
   <div class="p-4">
     <div>
       <div class="text-lg font-bold">
-        {
-          (await getEntry('docs', oneUpSlug)).data.title
-        }
+        { thisPageEntry.title }
+      </div>
+    </div>
+    <div>
+      <div class="text-lg font-bold">
+        <a href={`${import.meta.BASE_URL}docs/${oneUpEntry.slug}`}>
+          {
+            oneUpEntry.data.title
+          }
+        </a>
       </div>
       <div class="ml-2">
         {
@@ -37,6 +49,28 @@ const posts = await getCollection('docs')
               return isSameLevelRegExp.test(post.slug)
             })
             .map(post => {
+              if (post.slug === slug) {
+                // 自分を指す
+                return <div class="my-1">
+                  <div class="font-bold">
+                    <a href={`${import.meta.env.BASE_URL}docs/${post.slug}`}>
+                      { post.data.title }
+                    </a>
+                  </div>
+                  <div class="ml-2">
+                    {
+                      posts
+                        .filter(post => isChildRegExp.test(post.slug))
+                        .map(child => <div>
+                          <a href={child.slug}>
+                            { child.data.title }
+                          </a>
+                        </div>)
+                    }
+                  </div>
+                </div>
+              }
+              // 通常
               return <div class="my-1">
                 <a href={`${import.meta.env.BASE_URL}docs/${post.slug}`}>
                   { post.data.title }
