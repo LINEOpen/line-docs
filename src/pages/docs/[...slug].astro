@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Layout from '../../layouts/PageLayout.astro'
 import PagesNavbar from '../../components/docs/PagesNavbar.astro'
-import { IconEdit } from '@tabler/icons-solidjs'
+import { IconEdit } from '@tabler/icons-svelte'
 
 export async function getStaticPaths() {
   const posts = await getCollection('docs')
