@@ -8,7 +8,7 @@ updated: 2023-10-15
 ## `square/report?emid={emid: string}`
 指定したオープンチャットを報告するメニューを表示します
 - Param: `emid` string
-オープンチャットの[emid](/docs/words/emid)を指定します。
+オープンチャットの[emid](../../words/emid)を指定します。
 
 ## `square/join?emid={emid: string}`
 - Param: `emid` string
