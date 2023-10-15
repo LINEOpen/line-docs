@@ -24,8 +24,8 @@ const { Content } = await post.render()
 <Layout title={`${post.data.title} | LINE Internal Docs`}>
   <div class="flex">
     <!-- サイドバー -->
-    <div class="hidden md:block fixed overflow-x-scroll w-48 h-screen">
-      <PagesNavbar slug={post.slug} />
+    <div class="hidden md:block fixed">
+      <PagesNavbar slug={post.slug} class="overflow-x-scroll w-48 h-screen" />
     </div>
     <div class="w-48 hidden md:block" />
     <!-- ページ -->
