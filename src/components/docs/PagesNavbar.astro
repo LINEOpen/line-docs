@@ -62,7 +62,7 @@ const posts = await getCollection('docs')
                       posts
                         .filter(post => isChildRegExp.test(post.slug))
                         .map(child => <div>
-                          <a href={child.slug}>
+                          <a href={`${import.meta.BASE_URL}docs/${child.slug}`}>
                             { child.data.title }
                           </a>
                         </div>)
