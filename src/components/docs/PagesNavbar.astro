@@ -16,7 +16,7 @@ const upperSlugs = [
 ]
 const oneUpSlug = upperSlugs.at(-1)
 
-const isSameLevelRegExpString = `^${(oneUpSlug === 'index' ? '' : oneUpSlug).replaceAll('/', '\\/')}\/(?=[^\/]+$)`
+const isSameLevelRegExpString = `^${(oneUpSlug === 'index' ? '' : oneUpSlug + '/').replaceAll('/', '\\/')}(?=[^\/]+$)`
 
 const isSameLevelRegExp = new RegExp(isSameLevelRegExpString)
 console.log(isSameLevelRegExp)
