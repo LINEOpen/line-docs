@@ -21,8 +21,8 @@ const oneUpEntry = await getEntry('docs', oneUpSlug)
 const isSameLevelRegExpString = `^${(oneUpSlug === 'index' ? '' : oneUpSlug + '/').replaceAll('/', '\\/')}(?=[^\/]+$)`
 const isSameLevelRegExp = new RegExp(isSameLevelRegExpString)
 
-const isChildRegExpString = `^${slug}`
-const isChildRegExp = new RegExp(isSameLevelRegExpString)
+const isChildRegExpString = `^${(slug === 'index' ? '' : slug + '/').replaceAll('/', '\\/')}(?=[^\/]+$)`
+const isChildRegExp = new RegExp(isChildRegExpString)
 console.log(isChildRegExp)
 
 const posts = await getCollection('docs')
